@@ -2,209 +2,666 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Noah Thomas | IT Portfolio</title>
-
   <style>
+    :root {
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --surface-alt: #eef2f6;
+      --text: #17212b;
+      --muted: #5b6773;
+      --accent: #1f3b57;
+      --accent-soft: #dfe7ef;
+      --border: #d7dee6;
+      --shadow: 0 10px 24px rgba(23, 33, 43, 0.06);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    h1, h2 {
-      color: #38bdf8;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 40px 0;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      color: #94a3b8;
-    }
-
-    .links a {
-      margin: 5px;
-      display: inline-block;
-      padding: 10px 15px;
-      background: #1e293b;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-
-    .section {
-      margin-top: 40px;
-    }
-
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 15px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .skills span {
-      display: inline-block;
-      background: #334155;
-      margin: 5px;
-      padding: 8px 12px;
-      border-radius: 6px;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
     }
 
     a {
-      color: #38bdf8;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 74px;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      color: var(--text);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .nav a {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero {
+      padding: 5rem 0 3.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.95fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.08;
+      margin: 0 0 1rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-line {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.7rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.92rem 1.25rem;
+      border-radius: 10px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #183146;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--accent);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-alt);
+      text-decoration: none;
+    }
+
+    .hero-card,
+    .summary-box,
+    .project-card,
+    .info-card,
+    .education-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3,
+    .info-card h3,
+    .education-card h3,
+    .project-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.65rem;
+    }
+
+    .hero-card p,
+    .info-card p,
+    .education-card p {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+    }
+
+    .hero-card strong {
+      color: var(--text);
+    }
+
+    section {
+      padding: 1.2rem 0 3rem;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.5px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 1.75rem;
+    }
+
+    .summary-box p {
+      margin: 0;
+    }
+
+    .projects-grid,
+    .grid-two,
+    .grid-three {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .grid-two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .featured {
+      background: linear-gradient(to bottom right, #ffffff, #f8fbfd);
+      border-color: #c8d5e2;
+    }
+
+    .card-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: #ecf2f7;
+      padding: 0.35rem 0.62rem;
+      border-radius: 999px;
+      margin-bottom: 0.8rem;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 0.9rem;
+    }
+
+    ul {
+      margin: 0.8rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 0.55rem;
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .skill-group h3 {
+      margin-top: 0;
+      margin-bottom: 0.9rem;
+      font-size: 1.02rem;
+      color: var(--accent);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .chip {
+      background: var(--surface-alt);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.48rem 0.78rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .skills-grid,
+      .grid-two,
+      .grid-three {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        justify-content: center;
+        padding: 0.9rem 0;
+      }
+
+      .nav {
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 3.7rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
-
 <body>
-
-<div class="container">
-
-  <!-- HERO -->
-  <div class="hero">
-    <h1>Noah Thomas</h1>
-    <p>IT Student | Virtualization | Cybersecurity | Full-Stack Development</p>
-
-    <p>
-      📧 noahmt13@gmail.com |
-      📱 727-788-2425
-    </p>
-
-    <div class="links">
-      <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
-      <a href="https://github.com/no231387" target="_blank">GitHub</a>
-      <a href="https://lingua-7gkx3.ondigitalocean.app" target="_blank">Lingua App</a>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">Noah Thomas</div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <!-- SUMMARY -->
-  <div class="section">
-    <h2>Professional Summary</h2>
-    <p>
-      Information Technology student with hands-on experience in virtualization,
-      networking, systems administration, and full-stack development.
-      Built and deployed a solo-developed language learning platform while
-      developing infrastructure labs using Proxmox and VirtualBox.
-      Seeking opportunities in IT, cybersecurity, or systems roles.
-    </p>
-  </div>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">IT Student · Security+ Certified</div>
+          <h1>Professional portfolio focused on infrastructure, cybersecurity, and practical software development.</h1>
+          <p class="hero-subtitle">
+            I’m an Information Technology student with hands-on experience in virtualization,
+            networking, systems administration, and full-stack development. My featured project,
+            Lingua, reflects long-term solo development across front-end, back-end, database,
+            and deployment work.
+          </p>
+          <div class="contact-line">
+            noahmt13@gmail.com &nbsp;|&nbsp; 727-782-425 &nbsp;|&nbsp;
+            <a href="https://github.com/no231387" target="_blank">GitHub</a> &nbsp;|&nbsp;
+            <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://lingua-7gkx3.ondigitalocean.app" target="_blank">View Featured Project</a>
+            <a class="btn btn-secondary" href="https://github.com/no231387" target="_blank">View GitHub</a>
+          </div>
+        </div>
 
-  <!-- PROJECTS -->
-  <div class="section">
-    <h2>Projects</h2>
+        <aside class="hero-card">
+          <h3>Professional Focus</h3>
+          <p><strong>Primary Interests:</strong> IT infrastructure, cybersecurity, systems, and technical development roles</p>
+          <p><strong>Featured Project:</strong> Lingua — solo-developed language learning platform</p>
+          <p><strong>Core Areas:</strong> Virtualization, networking, systems administration, full-stack development</p>
+          <p><strong>Platforms & Tools:</strong> Windows, Linux, Proxmox, VirtualBox, React, Node.js, Express, MongoDB</p>
+        </aside>
+      </div>
+    </section>
 
-    <div class="card">
-      <h3>Lingua — Full-Stack Language Learning Platform</h3>
-      <p>
-        Solo-developed full-stack web application focused on flashcards,
-        study sessions, and adaptive learning workflows.
-      </p>
-      <ul>
-        <li>Built full-stack application using React, Node.js, Express, and MongoDB</li>
-        <li>Implemented study sessions, flashcards, and content-based learning flows</li>
-        <li>Designed backend APIs and managed application data models</li>
-        <li>Deployed and maintained a live production-style application</li>
-      </ul>
-      <a href="https://lingua-7gkx3.ondigitalocean.app" target="_blank">View Project</a>
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">Professional Summary</h2>
+        <p class="section-intro">
+          A concise overview of my background, technical strengths, and long-term project work.
+        </p>
+        <div class="summary-box">
+          <p>
+            Information Technology student with experience spanning virtualization, networking,
+            systems administration, cybersecurity foundations, and full-stack web development.
+            Built and deployed Lingua, a solo-developed language learning platform, while also
+            developing hands-on infrastructure labs using Proxmox and VirtualBox. Seeking
+            opportunities where I can contribute to real technical environments through a mix
+            of IT support, infrastructure knowledge, security awareness, and project-based development.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-intro">
+          Selected work demonstrating practical development, infrastructure setup, and technical problem solving.
+        </p>
+
+        <div class="projects-grid">
+          <article class="project-card featured">
+            <div class="card-label">Featured Project</div>
+            <h3>Lingua — Solo Full-Stack Language Learning Platform</h3>
+            <div class="meta">React · Node.js · Express.js · MongoDB · Deployment</div>
+            <p>
+              Lingua is a solo-developed web application built around language study workflows,
+              flashcards, structured content, and evolving learning features. It serves as my
+              primary long-term technical project and reflects work across the full application stack.
+            </p>
+            <ul>
+              <li>Designed and developed a full-stack language learning platform as an independent long-term project.</li>
+              <li>Built study-focused features such as flashcards, learning sessions, and content-based study flows.</li>
+              <li>Worked across front-end UI, back-end APIs, database-backed data models, and live deployment.</li>
+              <li>Continuously improved the platform through feature iteration, debugging, refinement, and workflow redesign.</li>
+            </ul>
+            <p>
+              <a href="https://lingua-7gkx3.ondigitalocean.app" target="_blank">Live Application</a>
+            </p>
+          </article>
+
+          <article class="project-card">
+            <h3>Virtual Desktop Infrastructure Lab — Proxmox</h3>
+            <div class="meta">Proxmox VE · Windows 11 Enterprise · Ubuntu · Virtualization</div>
+            <ul>
+              <li>Deployed Proxmox VE on bare metal to host multiple virtual machines.</li>
+              <li>Installed and configured Windows 11 Enterprise and Ubuntu environments for lab use.</li>
+              <li>Configured bridged networking to support LAN connectivity between hosts and guests.</li>
+              <li>Practiced VM provisioning, resource allocation, and troubleshooting across Windows and Linux systems.</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <h3>Virtual Networking & System Administration Lab — VirtualBox</h3>
+            <div class="meta">VirtualBox · Networking · Systems Administration</div>
+            <ul>
+              <li>Built a multi-VM lab environment to simulate practical network and administration scenarios.</li>
+              <li>Configured NAT, host-only, and internal network modes for different connectivity use cases.</li>
+              <li>Practiced system administration workflows and troubleshooting across virtualized environments.</li>
+              <li>Strengthened understanding of virtual infrastructure design and network behavior in isolated lab systems.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-intro">
+          Technical areas developed through coursework, labs, certifications, and project work.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Development</h3>
+            <div class="chips">
+              <span class="chip">React</span>
+              <span class="chip">Node.js</span>
+              <span class="chip">Express.js</span>
+              <span class="chip">MongoDB</span>
+              <span class="chip">Java</span>
+              <span class="chip">C</span>
+              <span class="chip">SQL</span>
+              <span class="chip">Git</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Infrastructure & Systems</h3>
+            <div class="chips">
+              <span class="chip">Proxmox</span>
+              <span class="chip">VirtualBox</span>
+              <span class="chip">Linux</span>
+              <span class="chip">Windows Administration</span>
+              <span class="chip">Virtual Machines</span>
+              <span class="chip">System Troubleshooting</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Networking</h3>
+            <div class="chips">
+              <span class="chip">Bridged Networking</span>
+              <span class="chip">NAT</span>
+              <span class="chip">Host-Only Networking</span>
+              <span class="chip">Internal Networking</span>
+              <span class="chip">Connectivity Troubleshooting</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Security & Cloud Foundations</h3>
+            <div class="chips">
+              <span class="chip">Cybersecurity Fundamentals</span>
+              <span class="chip">Security Awareness</span>
+              <span class="chip">Cloud Security Foundations</span>
+              <span class="chip">Systems Administration</span>
+              <span class="chip">Technical Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="container">
+        <h2 class="section-title">Certifications</h2>
+        <p class="section-intro">
+          Certifications supporting my foundation in IT, cybersecurity, and cloud-related security concepts.
+        </p>
+
+        <div class="grid-two">
+          <article class="info-card">
+            <h3>CompTIA Security+</h3>
+            <div class="meta">Cybersecurity</div>
+            <p>Industry-recognized certification covering security concepts, threats, risk management, and network security fundamentals.</p>
+          </article>
+
+          <article class="info-card">
+            <h3>CompTIA IT Fundamentals+</h3>
+            <div class="meta">Earned August 2024</div>
+            <p>Foundational certification covering hardware, software, systems, and core troubleshooting concepts.</p>
+          </article>
+
+          <article class="info-card">
+            <h3>CompTIA TestOut Cyber Defense Pro</h3>
+            <div class="meta">Earned 2025</div>
+            <p>Hands-on cybersecurity certification focused on defensive practices, technical analysis, and security lab experience.</p>
+          </article>
+
+          <article class="info-card">
+            <h3>AWS Cloud Security Foundations</h3>
+            <div class="meta">Earned 2025</div>
+            <p>Cloud security training focused on foundational AWS security concepts and secure cloud practices.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-intro">
+          Leadership, communication, and support experience that complements my technical background.
+        </p>
+
+        <div class="grid-two">
+          <article class="info-card">
+            <h3>Shift Manager — Jeremiah’s Italian Ice</h3>
+            <ul>
+              <li>Supervised 8–12 employees per shift in a fast-paced customer service environment.</li>
+              <li>Managed daily operations, delegated responsibilities, and supported efficient team execution.</li>
+              <li>Built leadership, accountability, and communication skills under time-sensitive conditions.</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <h3>Summer Bridge Tutor — Pinellas County Schools</h3>
+            <ul>
+              <li>Supported 20+ students in structured learning sessions and reinforced lesson material.</li>
+              <li>Explained concepts clearly and adapted communication style to different learning needs.</li>
+              <li>Helped improve student understanding through consistent one-on-one and group support.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="volunteer">
+      <div class="container">
+        <h2 class="section-title">Volunteer Experience</h2>
+        <p class="section-intro">
+          Community and organizational involvement that reflects professionalism, service, and adaptability.
+        </p>
+
+        <div class="grid-three">
+          <article class="info-card">
+            <h3>Pinellas County Schools</h3>
+          </article>
+
+          <article class="info-card">
+            <h3>YMCA</h3>
+          </article>
+
+          <article class="info-card">
+            <h3>Consulate General of Japan in Florida</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="languages">
+      <div class="container">
+        <h2 class="section-title">Languages</h2>
+        <p class="section-intro">
+          Language ability that supports communication and aligns well with my long-term interest in language learning technology.
+        </p>
+
+        <div class="grid-two">
+          <article class="info-card">
+            <h3>English</h3>
+            <div class="meta">Fluent</div>
+          </article>
+
+          <article class="info-card">
+            <h3>Japanese</h3>
+            <div class="meta">Basic (N5 Level)</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <p class="section-intro">
+          Academic preparation supporting my work in IT systems, networking, infrastructure, and development.
+        </p>
+
+        <article class="education-card">
+          <h3>Bachelor of Science in Information Technology</h3>
+          <div class="meta">University of Central Florida</div>
+          <p>
+            Coursework and hands-on project work focused on information technology, networking,
+            systems administration, virtualization, databases, programming, and practical problem solving.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Noah Thomas · noahmt13@gmail.com · 727-782-425
     </div>
-
-    <div class="card">
-      <h3>Virtual Desktop Infrastructure Lab — Proxmox</h3>
-      <ul>
-        <li>Deployed Proxmox VE on bare metal to host multiple VMs</li>
-        <li>Installed Windows 11 Enterprise and Ubuntu environments</li>
-        <li>Configured bridged networking for LAN connectivity</li>
-        <li>Practiced VM provisioning and resource allocation</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Virtual Networking & System Administration Lab — VirtualBox</h3>
-      <ul>
-        <li>Built multi-VM lab simulating real network environments</li>
-        <li>Configured NAT, host-only, and internal networking</li>
-        <li>Practiced system administration and troubleshooting</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- SKILLS -->
-  <div class="section">
-    <h2>Skills</h2>
-
-    <div class="skills">
-      <span>React</span>
-      <span>Node.js</span>
-      <span>Express</span>
-      <span>MongoDB</span>
-      <span>Java</span>
-      <span>C</span>
-      <span>SQL</span>
-      <span>Proxmox</span>
-      <span>VirtualBox</span>
-      <span>Linux</span>
-      <span>Windows Administration</span>
-      <span>Networking</span>
-      <span>Cybersecurity</span>
-      <span>Git</span>
-    </div>
-  </div>
-
-  <!-- EXPERIENCE -->
-  <div class="section">
-    <h2>Experience</h2>
-
-    <div class="card">
-      <h3>Shift Manager — Jeremiah’s Italian Ice</h3>
-      <ul>
-        <li>Supervised 8–12 employees in fast-paced environment</li>
-        <li>Managed operations and delegated responsibilities</li>
-        <li>Maintained efficiency and customer satisfaction</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Summer Bridge Tutor — Pinellas County Schools</h3>
-      <ul>
-        <li>Supported 20+ students in structured learning sessions</li>
-        <li>Explained concepts and improved student understanding</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <!-- EDUCATION -->
-  <div class="section">
-    <h2>Education</h2>
-    <p>
-      Bachelor of Science in Information Technology<br>
-      University of Central Florida
-    </p>
-  </div>
-
-</div>
-
+  </footer>
 </body>
 </html>
